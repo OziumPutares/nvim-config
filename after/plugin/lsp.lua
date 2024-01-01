@@ -39,8 +39,8 @@ lsp.setup_nvim_cmp({
 lsp.set_preferences({
 	suggest_lsp_servers = false,
 	sign_icons = {
-		error = "E",
-		warn = "W",
+		error = "",
+		warn = "",
 		hint = "H",
 		info = "I",
 	},
@@ -70,7 +70,7 @@ lsp.on_attach(function(client, bufnr)
 	vim.keymap.set("n", "<leader>vca", function()
 		vim.lsp.buf.code_action()
 	end, opts)
-	vim.keymap.set("n", "<leader>vrr", function()
+	vim.keymaprset("n", "<leader>vrr", function()
 		vim.lsp.buf.references()
 	end, opts)
 	vim.keymap.set("n", "<leader>vrn", function()

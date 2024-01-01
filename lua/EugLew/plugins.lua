@@ -42,16 +42,7 @@ local plugins = {
 		end,
 	},
 
-	{
-		"folke/trouble.nvim",
-		config = function()
-			require("trouble").setup({
-				icons = false,
-			})
-		end,
-	},
-
-  "ThePrimeagen/vim-be-good",
+	"ThePrimeagen/vim-be-good",
 	"tpope/vim-obsession",
 	"nvim-treesitter/nvim-treesitter",
 	"nvim-treesitter/playground",
@@ -84,7 +75,6 @@ local plugins = {
 		},
 	},
 	"folke/zen-mode.nvim",
-	"github/copilot.vim",
 	"eandrju/cellular-automaton.nvim",
 	"laytan/cloak.nvim",
 	"mhartington/formatter.nvim",
