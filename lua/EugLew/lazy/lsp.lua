@@ -37,14 +37,10 @@ return {
 				"bashls",
 				"clangd",
 				"cmake",
-				"dockerls",
-				"gopls",
-				"jsonls",
 				"pyright",
-				"rust_analyzer",
-				"tsserver",
-				"vimls",
-				"yamlls",
+				"csharp-language-server",
+				"omnisharp",
+				"eslint",
 			},
 			handlers = {
 				function(server_name)
@@ -66,6 +62,32 @@ return {
 						},
 					})
 				end,
+				["clangd"] = function()
+					local lspconfig = require("lspconfig")
+					lspconfig.clangd.setup({
+						capabilities = capabilities,
+						settings = {
+							["clangd"] = {
+								cmd = {
+									"clangd",
+									"--background-index",
+									"--clang-tidy",
+								},
+								filetypes = {
+									{ "c", "cpp", "objc", "objcpp", "cuda", "proto" },
+								},
+							},
+						},
+					})
+				end,
+				["omnisharp"] = function()
+					local lspconfig = require("lspconfig")
+					lspconfig.omnisharp.setup({})
+				end,
+				["eslint"] = function()
+					local lspconfig = require("lspconfig")
+					lspconfig.eslint.setup({})
+				end,
 			},
 		})
 
@@ -86,8 +108,8 @@ return {
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" }, -- For luasnip users.
-			}, {
 				{ name = "buffer" },
+				{ name = "path" },
 			}),
 		})
 

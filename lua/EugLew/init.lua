@@ -29,17 +29,6 @@ autocmd({ "BufWritePre" }, {
 	pattern = "*",
 	command = [[%s/\s\+$//e]],
 })
-
-augroup("__formatter__", { clear = true })
-autocmd("BufWritePost", {
-	group = "__formatter__",
-	command = ":FormatWrite",
-})
-
-vim.g.netrw_browse_split = 0
-vim.g.netrw_banner = 0
-vim.g.netrw_winsize = 25
-
 autocmd("LspAttach", {
 	group = TheEugLewGroup,
 	callback = function(e)
@@ -79,3 +68,7 @@ autocmd("LspAttach", {
 		end, opts)
 	end,
 })
+
+vim.g.netrw_browse_split = 0
+vim.g.netrw_banner = 0
+vim.g.netrw_winsize = 25
