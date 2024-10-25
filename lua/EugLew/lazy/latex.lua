@@ -5,7 +5,8 @@ return {
 	init = function()
 		-- VimTeX configuration goes here, e.g.
 		vim.g.vimtex_view_method = "zathura"
-		vim.cmd([[filetype plugin indent on
-    ]])
+		vim.cmd([[filetype plugin indent on]])
+		vim.cmd([[filetype plugin on]])
+		vim.cmd([[let maplocalleader = ","]])
 	end,
 }

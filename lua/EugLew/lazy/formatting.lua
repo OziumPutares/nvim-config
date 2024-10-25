@@ -6,7 +6,7 @@ return {
 			-- Conform will run multiple formatters sequentially
 			python = { "isort", "black" },
 			cpp = { "clang-format", lsp_format = "fallback" },
-			cs = { "csharpier", lsp_format = "fallback" },
+			cs = { "dotnet", lsp_format = "fallback" },
 			-- You can customize some of the format options for the filetype (:help conform.format)
 			rust = { "rustfmt", lsp_format = "fallback" },
 			-- Conform will run the first available formatter

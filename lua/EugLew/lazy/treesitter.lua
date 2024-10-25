@@ -24,5 +24,9 @@ return {
 			},
 		})
 		vim.treesitter.language.register("cpp", { "ixx", "mpp" })
+		vim.api.nvim_create_autocmd(
+			{ "FIleType" },
+			{ pattern = "tex", group = optional_group, command = "TSBufDisable highlight" }
+		)
 	end,
 }

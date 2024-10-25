@@ -12,7 +12,6 @@ return {
 		"saadparwaiz1/cmp_luasnip",
 		"j-hui/fidget.nvim",
 	},
-
 	config = function()
 		local cmp = require("cmp")
 		local cmp_lsp = require("cmp_nvim_lsp")
@@ -22,7 +21,6 @@ return {
 			vim.lsp.protocol.make_client_capabilities(),
 			cmp_lsp.default_capabilities()
 		)
-
 		require("fidget").setup({})
 		require("mason").setup({
 			"codelldb",
@@ -38,9 +36,9 @@ return {
 				"clangd",
 				"cmake",
 				"pyright",
-				"csharp-language-server",
-				"omnisharp",
+				"csharp_ls", -- Use this for the C# Language Server
 				"eslint",
+				"texlab",
 			},
 			handlers = {
 				function(server_name)
@@ -48,7 +46,6 @@ return {
 						capabilities = capabilities,
 					})
 				end,
-
 				["lua_ls"] = function()
 					local lspconfig = require("lspconfig")
 					lspconfig.lua_ls.setup({
@@ -80,9 +77,27 @@ return {
 						},
 					})
 				end,
-				["omnisharp"] = function()
+				["csharp_ls"] = function()
 					local lspconfig = require("lspconfig")
-					lspconfig.omnisharp.setup({})
+					lspconfig.csharp_ls.setup({
+						capabilities = capabilities,
+						root_dir = function(startpath)
+							return require("lspconfig").util.root_pattern("*.sln")(startpath)
+								or require("lspconfig").util.root_pattern("*.csproj")(startpath)
+								or require("lspconfig").util.root_pattern(".git")(startpath)
+						end,
+						handlers = {
+							["textDocument/definition"] = require("lspconfig").util.location_handler,
+						},
+						on_attach = function(client, bufnr)
+							-- Enable completion triggered by <c-x><c-o>
+							vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+						end,
+					})
+				end,
+				["texlab"] = function()
+					local lspconfig = require("lspconfig")
+					lspconfig.eslint.setup({})
 				end,
 				["eslint"] = function()
 					local lspconfig = require("lspconfig")
@@ -90,13 +105,13 @@ return {
 				end,
 			},
 		})
-
+		require("lspconfig").texlab.setup({})
+		-- Rest of your configuration remains the same
 		local cmp_select = { behavior = cmp.SelectBehavior.Select }
-
 		cmp.setup({
 			snippet = {
 				expand = function(args)
-					require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
+					require("luasnip").lsp_expand(args.body)
 				end,
 			},
 			mapping = cmp.mapping.preset.insert({
@@ -107,14 +122,12 @@ return {
 			}),
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
-				{ name = "luasnip" }, -- For luasnip users.
+				{ name = "luasnip" },
 				{ name = "buffer" },
 				{ name = "path" },
 			}),
 		})
-
 		vim.diagnostic.config({
-			-- update_in_insert = true,
 			float = {
 				focusable = false,
 				style = "minimal",
