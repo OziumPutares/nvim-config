@@ -30,12 +30,28 @@ class {}
 end
 local LoadCPPSnippets = function()
 	ls.add_snippets("cpp", {
+
 		s(
 			"main",
 			fmt(
 				"int main({}){{\n {}\n }}",
 				{ c(1, { t(""), t("int argc, char *argv[]") }), i(2, 'std::println("Hello, World!");') }
 			)
+		),
+
+		s(
+			"prn",
+			fmt("std::print({})", { c(1, { fmt([["{{}}", {}]], { i(1) }), fmt([["{}"]], { i(1, "Hello, world!") }) }) })
+		),
+		s(
+			"prl",
+			fmt("std::println({})", {
+				c(
+					1,
+					{ fmt([["{{}}", {}]], { i(1) }), fmt([["{}"]], { i(1, "Hello, world!") }) },
+					{ restore_cursor = true }
+				),
+			})
 		),
 	})
 end
@@ -65,6 +81,11 @@ return {
 		vim.keymap.set({ "i" }, "<C-l>", function()
 			if ls.choice_active() then
 				ls.change_choice(1)
+			end
+		end, { silent = true })
+		vim.keymap.set({ "i" }, "<C-s>", function()
+			if ls.choice_active() then
+				ls.change_choice(-1)
 			end
 		end, { silent = true })
 		vim.keymap.set("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/lua/EugLew/lazy/luasnip.lua<CR>")
