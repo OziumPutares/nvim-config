@@ -4,17 +4,17 @@ return {
 	cmd = "Trouble",
 	keys = {
 		{
-			"<leader>tx",
+			"<leader>tt",
 			"<cmd>Trouble diagnostics toggle<cr>",
 			desc = "Diagnostics (Trouble)",
 		},
 		{
-			"<leader>tX",
+			"<leader>tT",
 			"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
 			desc = "Buffer Diagnostics (Trouble)",
 		},
 		{
-			"<leader>ts",
+			"<leader>tF",
 			"<cmd>Trouble symbols toggle focus=false<cr>",
 			desc = "Symbols (Trouble)",
 		},

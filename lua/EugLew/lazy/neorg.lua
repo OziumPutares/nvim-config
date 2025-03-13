@@ -19,6 +19,9 @@ return {
 			vim.keymap.set("n", "<Leader>nr", function()
 				vim.cmd("Neorg return")
 			end)
+			vim.keymap.set("n", "<LocalLeader>tt", function()
+				vim.cmd("Neorg toc")
+			end)
 			require("neorg").setup({
 				load = {
 					["core.defaults"] = {}, -- Loads default behaviour
@@ -39,7 +42,7 @@ return {
 					["core.dirman"] = { -- Manages Neorg workspaces
 						config = {
 							workspaces = {
-								notes = "~/notes",
+								notes = "~/notes/neorg/",
 							},
 							default_workspace = "notes",
 						},

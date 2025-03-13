@@ -36,9 +36,10 @@ return {
 				"clangd",
 				"cmake",
 				"pyright",
-				"csharp_ls", -- Use this for the C# Language Server
+				"csharp_ls",
 				"eslint",
 				"texlab",
+				"haskell-language-server",
 			},
 			handlers = {
 				function(server_name)
@@ -68,7 +69,11 @@ return {
 								cmd = {
 									"clangd",
 									"--background-index",
+									"--std=c++23",
 									"--clang-tidy",
+									"--header-insertion=iwyu",
+									"--suggest-missing-includes",
+									"--experimental-modules-support",
 								},
 								filetypes = {
 									{ "c", "cpp", "objc", "objcpp", "cuda", "proto" },
@@ -97,7 +102,13 @@ return {
 				end,
 				["texlab"] = function()
 					local lspconfig = require("lspconfig")
-					lspconfig.eslint.setup({})
+					lspconfig.texlab.setup({})
+				end,
+				["cmake"] = function()
+					require("lspconfig").cmake.setup({})
+				end,
+				["hls"] = function()
+					require("lspconfig").hls.setup({})
 				end,
 				["eslint"] = function()
 					local lspconfig = require("lspconfig")
