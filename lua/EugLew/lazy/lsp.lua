@@ -40,6 +40,7 @@ return {
 				"eslint",
 				"texlab",
 				"haskell-language-server",
+				"glslls",
 			},
 			handlers = {
 				function(server_name)
@@ -110,6 +111,9 @@ return {
 				["hls"] = function()
 					require("lspconfig").hls.setup({})
 				end,
+				["glslls"] = function()
+					require("lspconfig").hls.setup({})
+				end,
 				["eslint"] = function()
 					local lspconfig = require("lspconfig")
 					lspconfig.eslint.setup({})
@@ -135,6 +139,7 @@ return {
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
 				{ name = "buffer" },
+				{ name = "neorg" },
 				{ name = "path" },
 			}),
 		})

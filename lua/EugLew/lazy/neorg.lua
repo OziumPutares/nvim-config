@@ -6,7 +6,7 @@ return {
 	},
 	{
 		"nvim-neorg/neorg",
-		dependencies = { "luarocks.nvim" },
+		dependencies = { "luarocks.nvim", "3rd/image.nvim" },
 		-- tag = "*",
 		lazy = false, -- enable lazy load
 		ft = "norg", -- lazy load on file type
@@ -53,6 +53,12 @@ return {
 								keybinds.map("norg", "n", "<LocalLeader>nt", "<cmd>Neorg toc<CR>")
 							end,
 						},
+					},
+					["core.completion"] = {
+						config = { engine = "nvim-cmp" },
+					},
+					["core.latex.renderer"] = {
+						config = { render_on_enter = true },
 					},
 				},
 			})
