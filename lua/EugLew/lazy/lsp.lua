@@ -28,13 +28,13 @@ return {
         "lua_ls",
         "bashls",
         "clangd",
-        "cmake",
         "pyright",
         "csharp_ls",
         "eslint",
         "texlab",
         "hls",
-        "glslls",
+        "glsl_analyzer",
+        "wgsl-analyzer"
       },
     })
 
@@ -55,6 +55,10 @@ return {
     setup("cmake")
     setup("hls")
     setup("glslls")
+    setup("wgsl-analyzer", {
+      filetypes = { "wgsl", "wesl" },
+      capabilities = capabilities,
+    })
 
     -- Lua LS
     setup("lua_ls", {
