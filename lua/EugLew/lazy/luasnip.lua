@@ -105,6 +105,14 @@ class {}
     })
 
     -- C++ snippets
+    local f = ls.function_node
+    local fmt = require("luasnip.extras.fmt").fmt
+    local function include_guard()
+      local filename = vim.fn.expand("%:t")
+      return filename
+          :upper()
+          :gsub("[^A-Z0-9]", "_")
+    end
     ls.add_snippets("cpp", {
       s("main", fmt([[
 int main({}) {{
@@ -116,6 +124,19 @@ int main({}) {{
           t("int argc, char *argv[]"),
         }),
         i(2, 'std::cout << "Hello World";'),
+      })),
+      s("guard", fmt([[
+#ifndef {}
+#define {}
+
+{}
+
+#endif // {}
+]], {
+        f(include_guard),
+        f(include_guard),
+        i(1),
+        f(include_guard),
       })),
     })
   end,

@@ -1,7 +1,8 @@
 return {
-  "williamboman/mason.nvim",
+  "mason-org/mason.nvim",
   dependencies = {
-    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
+    "mason-org/mason-lspconfig.nvim",
     "hrsh7th/cmp-nvim-lsp",
     "j-hui/fidget.nvim",
     'hrsh7th/cmp-buffer',
@@ -34,7 +35,10 @@ return {
         "texlab",
         "hls",
         "glsl_analyzer",
-        "wgsl-analyzer"
+        "wgsl-analyzer",
+        "qmlls",
+        "astro",
+        "tinymist"
       },
     })
 
@@ -55,6 +59,11 @@ return {
     setup("cmake")
     setup("hls")
     setup("glslls")
+    setup("qmlls")
+    setup("tinymist")
+
+    setup("astro",
+      { init_options = { typescript = { tsdk = vim.fn.stdpath("data") .. "/mason/packages/typescript-language-server/node_modules/typescript/lib" } } })
     setup("wgsl-analyzer", {
       filetypes = { "wgsl", "wesl" },
       capabilities = capabilities,

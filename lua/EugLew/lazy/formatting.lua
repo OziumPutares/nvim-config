@@ -9,11 +9,12 @@ return {
       cs = { "dotnet", lsp_format = "fallback" },
       -- You can customize some of the format options for the filetype (:help conform.format)
       rust = { "rustfmt", lsp_format = "fallback" },
-      js = { "prettierd" },
-      css = { "prettierd" },
-      html = { "prettierd" },
-      json = { "prettierd" },
+      js = { "prettier" },
+      css = { "prettier" },
+      html = { "prettier" },
+      json = { "prettier" },
       cmake = { "cmake_format" },
+      astro = { "prettierd", "prettier", stop_after_first = true },
       -- Conform will run the first available formatter
     },
     format_on_save = {
