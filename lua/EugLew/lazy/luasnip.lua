@@ -114,6 +114,7 @@ class {}
           :gsub("[^A-Z0-9]", "_")
     end
     ls.add_snippets("cpp", {
+      -- Main snippet
       s("main", fmt([[
 int main({}) {{
     {}
@@ -125,6 +126,7 @@ int main({}) {{
         }),
         i(2, 'std::cout << "Hello World";'),
       })),
+      -- Include guard snippet
       s("guard", fmt([[
 #ifndef {}
 #define {}
@@ -138,6 +140,44 @@ int main({}) {{
         i(1),
         f(include_guard),
       })),
+      -- struct snippet
+
+      s("str", fmt([[
+{}{} {} {{
+}};]], {
+        c(1, { t("struct "), t("class ") }),
+        c(2, {
+          t(""), fmt([[[[nodiscard("{}")]] .. "]] ", { i(1) }), fmt("[[{}]] ", { i(1) })
+        }),
+        i(3)
+      })),
+      --
+      -- template snippet
+      --
+      s("te", fmt([[
+template<{}{} {}>]], {
+        c(1, { t("typename"), t("auto"), fmt("{}", { i(1) }), t("typename..."), t("auto...") }),
+        c(2, { t(""), t("...") }),
+        i(3)
+      }
+      )),
+      --
+      -- [[nodiscard]] snippet
+      --
+      s("no", t("[[nodiscard]]")),
+      --
+      -- Function snippet
+      --
+      s("fu",
+        fmt([[{}{}auto {}({}){} -> {} {{
+      }}]],
+          c(1, { t("[[nodiscard]] "), t("") }),
+          c(2, { t("constexpr "), t("") }),
+          i(3),
+          i(4),
+          c(5, { t(" noexcept", t("")) }),
+          i(6)
+        ))
     })
   end,
 }
