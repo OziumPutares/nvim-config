@@ -170,14 +170,77 @@ template<{}{} {}>]], {
       --
       s("fu",
         fmt([[{}{}auto {}({}){} -> {} {{
-      }}]],
-          c(1, { t("[[nodiscard]] "), t("") }),
-          c(2, { t("constexpr "), t("") }),
-          i(3),
-          i(4),
-          c(5, { t(" noexcept", t("")) }),
-          i(6)
+}}]],
+          {
+            c(1, { t("[[nodiscard]] "), t("") }),
+            c(2, { t("constexpr "), t("") }),
+            i(3),
+            i(4),
+            c(5, { t(" noexcept", t("")) }),
+            i(6)
+          }
         ))
+    })
+    ls.add_snippets("typst", {
+      --- theorem
+      s("thm", fmt([[#theorem[{}][{}] {} ]], { i(1), i(2), c(3, { fmt("<thm:{}>", { i(1) }), t("") }) })),
+      ---definition
+      s("def",
+        fmt([[#definition{}[{}] {} ]], { c(1, { t "-box", t "", }), i(2), c(3, { fmt("<def:{}>", { i(1) }), t("") }) })),
+      ---lemma
+      s("lem", fmt([[#lemma[{}] {} ]], { i(1), c(2, { fmt("<lem:{}>", { i(1) }), t("") }) })),
+      ---corollary
+      s("cor", fmt([[#corollary[{}] {} ]], { i(1), c(2, { fmt("<cor:{}>", { i(1) }), t("") }) })),
+      ---proposition
+      s("prop", fmt([[#proposition[{}] {} ]], { i(1), c(2, { fmt("<prop:{}>", { i(1) }), t("") }) })),
+      ---conjecture
+      s("con", fmt([[#conjecture[{}][{}] {} ]], { i(1), i(2), c(3, { fmt("<con:{}>", { i(1) }), t("") }) })),
+      ---axiom
+      s("axiom", fmt([[#axiom[{}][{}] {} ]], { i(1), i(2), c(3, { fmt("<axiom:{}>", { i(1) }), t("") }) })),
+      ---postulate
+      s("post", fmt([[#postulate[{}][{}] {} ]], { i(1), i(2), c(3, { fmt("<post:{}>", { i(1) }), t("") }) })),
+      ---property
+      s("property", fmt([[#property[{}] {} ]], { i(1), c(2, { fmt("<prty:{}>", { i(1) }), t("") }) })),
+      ---assumption
+      s("ass", fmt([[#assumption[{}] {} ]], { i(1), c(2, { fmt("<ass:{}>", { i(1) }), t("") }) })),
+      ---example
+      s("exa", fmt([[#example[{}] {} ]], { i(1), c(2, { fmt("<exa:{}>", { i(1) }), t("") }) })),
+      ---proof
+      s("prf", fmt([[#proof[{}][{}] {} ]], { i(1), i(2), c(3, { fmt("<prf:{}>", { i(1) }), t("") }) })),
+      ---solution
+      s("sol",
+        fmt([[#solution{} [{}] {} ]],
+          { c(1, { t("(qed: auto)"), t("") }), i(2), c(3, { fmt("<sol:{}>", { i(1) }), t("") }) })),
+      ---problem
+      s("prob", fmt([[#problem[{}] {} ]], { i(1), c(2, { fmt("<prob:{}>", { i(1) }), t("") }) })),
+      ---exercise
+      s("ex", fmt([[#exercise[{}] {} ]], { i(1), c(2, { fmt("<ex:{}>", { i(1) }), t("") }) })),
+      ---conclusion
+      s("conc", fmt([[#conclusion[{}] {} ]], { i(1), c(2, { fmt("<conc:{}>", { i(1) }), t("") }) })),
+      s("qed", t("#qedhere")),
+      s("rethm", fmt("#theorion-restate(@thm:{})", { i(1) })),
+      s("tbox", fmt([[#theorem-box[{}] [{}] {} ]], { i(1), i(2), c(3, { fmt("<thm:{}>", { i(1) }), t("") }) })),
+
+      --- TODO Add the rest
+      ---note-block
+
+      ---remark-block
+      s("remark", fmt([[#remark-block[{}] ]], { i(1) })),
+      ---important-block
+      s("important", fmt([[#important-block[{}] ]], { i(1) })),
+      ---tip-block
+      s("tip", fmt([[#tip-block[{}] ]], { i(1) })),
+      ---warning-block
+      s("warn", fmt([[#warning-block[{}] ]], { i(1) })),
+      ---caution-block
+      s("caution", fmt([[#caution-block[{}] ]], { i(1) })),
+      ---quote-block
+      s("quote", fmt([[#quote-block[{}] ]], { i(1) })),
+      ---emph-block
+      s("emph", fmt([[#emph-block[{}] ]], { i(1) })),
+      ---notation-box
+      s("not", fmt([[#notation-box[{}]{} ]], { i(1), i(2) })),
+      s("m", fmt([[${}$ {}]], { i(1), i(2) })),
     })
   end,
 }

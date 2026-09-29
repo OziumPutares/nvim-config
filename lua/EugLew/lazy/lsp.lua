@@ -38,7 +38,8 @@ return {
         "wgsl-analyzer",
         "qmlls",
         "astro",
-        "tinymist"
+        "tinymist",
+        "typstyle",
       },
     })
 

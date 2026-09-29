@@ -15,6 +15,7 @@ return {
       json = { "prettier" },
       cmake = { "cmake_format" },
       astro = { "prettierd", "prettier", stop_after_first = true },
+      typst = { "prettypst" },
       -- Conform will run the first available formatter
     },
     format_on_save = {
